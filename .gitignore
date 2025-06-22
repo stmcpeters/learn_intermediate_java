@@ -1,1 +1,42 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IntelliJ project files
+.idea/
+*.iml
+*.iws
+out/
+
+# Logs
+*.log
+
+# Build directories
+build/
+target/
+bin/
+
+# Compiled class files
+*.class
+
+# VS Code
+.vscode/
+
+# Package distributions
+*.jar
+*.war
+*.ear
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Misc
+*.swp
+*.swo
+*.bak
+*.tmp
+*.old
 
