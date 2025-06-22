@@ -1,9 +1,11 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.Objects;
 
 public class MedievalGame {
 
   /* Instance Variables */
+  private Player player;
 
   /* Main Method */
   public static void main(String[] args) {
@@ -43,20 +45,60 @@ public class MedievalGame {
 
   /* Instance Methods */
   private Player start(Scanner console) {
-    // Add start functionality here
-
-    return new Player("Test");
+    Player player;
+    Art.homeScreen();
+    System.out.println("Welcome!");
+    System.out.println("Would you like to load a game (Y) or create a new game (N)");
+    String answer = console.next().toLowerCase();
+    while(true){
+      if(answer.equals("y")){
+        System.out.print("Enter your character's name: ");
+        player = load(console.next(), console);
+        break;
+      }
+      else if (answer.equals("n")){
+        System.out.println("Enter a character's name to start a new game");
+        String newName = console.next();
+        player = new Player(newName);
+        break;
+      }
+      else {
+        System.out.println("Invalid response. Please try again. Enter 'Y' to load a game and 'N' to start a new game");
+        answer = console.next().toLowerCase();
+      }
+    }
+    return player;
   } // End of start
 
   private void save() {
-    // Add save functionality here
+    String fileName = player.getName() + ".svr";
+    try {
+      FileOutputStream userSaveFile = new FileOutputStream(fileName);
+      ObjectOutputStream playerSaver = new ObjectOutputStream(userSaveFile);
+      playerSaver.writeObject(player);
+    } catch (IOException e) {
+      System.out.println("Error occurred when saving game!");
+    }
 
   } // End of save
 
   private Player load(String playerName, Scanner console) {
-    // Add load functionality here
-
-    return new Player("Test");
+    Player loadedPlayer;
+    try {
+      FileInputStream userSaveFile = new FileInputStream(playerName+".svr");
+      ObjectInputStream playerLoader = new ObjectInputStream(userSaveFile);
+      loadedPlayer = (Player) playerLoader.readObject();
+    } catch (IOException | ClassNotFoundException e){
+      addDelay(1500);
+      System.out.println("A problem occurred loading your character, we've created a new player with the name you " +
+              "entered.");
+      System.out.println("If you're sure the spelling is correct, your character file may no longer exist, please " +
+              "reload the game if you'd like to try again.");
+      System.out.println("We've created a new player with the name: " + playerName);
+      addDelay(2000);
+      loadedPlayer = new Player(playerName);
+    }
+    return loadedPlayer;
   } // End of load
 
   // Adds a delay to the console so it seems like the computer is "thinking"

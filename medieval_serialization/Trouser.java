@@ -1,6 +1,8 @@
-public class Trouser extends Armour {
+import java.io.Serializable;
+public class Trouser extends Armour implements Serializable {
 
   /* Class Variables */
+  private static final long serialVersionUID = 1L;
 
 
   /* Constructors */
