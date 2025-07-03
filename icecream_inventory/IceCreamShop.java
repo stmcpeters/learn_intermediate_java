@@ -3,6 +3,45 @@ import java.util.Scanner;
 class ShopItems {
   int totalCount;
 
+  // nested class called NonVegan
+  class NonVegan {
+    int iceCreamCount;
+    int shakeCount;
+    int totalCount;
+
+    public void increaseCount(int type, int count){
+      if (type == 1){
+        iceCreamCount += count;
+        totalCount += count; // updates totalCount in NonVegan
+        ShopItems.this.totalCount += count; // updates totalCount in ShopItems
+      }
+      if (type == 2){
+        shakeCount += count;
+        totalCount += count; // updates totalCount in NonVegan
+        ShopItems.this.totalCount += count; // updates totalCount in ShopItems
+      }
+    }
+  }
+
+  class Vegan {
+    int smoothieCount;
+    int slushieCount;
+    int totalCount;
+
+    public void increaseCount(int type, int count){
+      if (type == 3){
+        smoothieCount += count; 
+        totalCount += count; // updates totalCount in Vegan
+        ShopItems.this.totalCount += count; // updates totalCount in ShopItems
+      }
+      if (type == 4){
+        slushieCount += count; 
+        totalCount += count; // updates totalCount in Vegan
+        ShopItems.this.totalCount += count; // updates totalCount in ShopItems
+      }
+    }
+  }
+
 }
 
 public class IceCreamShop {
