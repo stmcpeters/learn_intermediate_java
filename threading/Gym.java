@@ -50,7 +50,7 @@ public class Gym {
           System.out.println(e);
         }
       }
-      System.out.println(Thread.currentThread().getName() + "all members have completed exercising!");
+      System.out.println(Thread.currentThread().getName() + " all members have completed exercising!");
     });
     supervisor.setName("Gym staff");
     return supervisor;
