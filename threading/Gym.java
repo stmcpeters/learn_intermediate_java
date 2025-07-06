@@ -28,4 +28,27 @@ public class Gym {
 
     gymMembersRoutines.forEach(Thread::start);
   }
+
+  private Thread createSupervisor(List<Thread> threads){
+    Thread supervisor = new Thread(() -> {
+      while (true) { 
+        List<String> runningThreads = threads.stream()
+          .filter((t) -> t.isAlive())
+          .map((t) -> t.getName())
+          .collect(Collectors.toList());
+        System.out.println(Thread.currentThread().getName() + " - " + runningThreads.size() + " people still working out" + runningThreads + "\n");
+        if(runningThreads.isEmpty()){
+          break;
+        }
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          System.out.println(e);
+        }
+      }
+      System.out.println(Thread.currentThread().getName() + "all members have completed exercising!");
+    });
+    supervisor.setName("Gym staff");
+    return supervisor;
+  }
 }
