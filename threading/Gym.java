@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -54,4 +55,22 @@ public class Gym {
     supervisor.setName("Gym staff");
     return supervisor;
   }
+
+  public static void main(String[] args) {
+      Gym planetFitness = new Gym(5, new HashMap<>() {
+      {
+        put(MachineType.LEGPRESSMACHINE, 5);
+        put(MachineType.LEGPRESSMACHINE, 5);
+        put(MachineType.BARBELL, 5);
+        put(MachineType.SQUATMACHINE, 5);
+        put(MachineType.LEGEXTENSIONMACHINE, 5);
+        put(MachineType.LEGCURLMACHINE, 5);
+        put(MachineType.LATPULLDOWNMACHINE, 5);
+        put(MachineType.CABLECROSSOVERMACHINE, 5);
+      }
+    });
+
+    planetFitness.openForTheDay();
+  }
+
 }
